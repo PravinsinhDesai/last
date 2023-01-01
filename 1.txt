@@ -1,0 +1,21 @@
+ubuntu@ip-172-31-43-129:~$ sudo apt update
+ubuntu@ip-172-31-43-129:~$ sudo apt install git
+ubuntu@ip-172-31-43-129:~$ git clone https://github.com/PravinsinhDesai/Apptest.git
+ubuntu@ip-172-31-43-129:~$ sudo apt install docker.io
+ubuntu@ip-172-31-43-129:~$ docker -v
+ubuntu@ip-172-31-43-129:~$ ls
+ubuntu@ip-172-31-43-129:~$ cd Apptest
+ubuntu@ip-172-31-43-129:~/Apptest$ sudo docker build . -t apponvm
+ubuntu@ip-172-31-43-129:~/Apptest$ sudo docker images
+ubuntu@ip-172-31-43-129:~/Apptest$ sudo systemctl start docker
+ubuntu@ip-172-31-43-129:~/Apptest$ sudo systemctl status docker
+ubuntu@ip-172-31-43-129:~/Apptest$ sudo docker run --name runningapp -d -p 3000:3000 apponvm
+
+
+FROM node:7
+WORKDIR /app
+COPY  package.json /app
+RUN npm install
+COPY . /app
+CMD node server.js
+EXPOSE 4000
